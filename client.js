@@ -2,7 +2,8 @@ const net = require('net');
 
 process.stdin.resume();
 
-const connect = function() {
+
+const connect = function(cb) {
   const conn = net.createConnection({ 
     host: '192.168.88.45',
     port: 50541
@@ -13,9 +14,14 @@ const connect = function() {
     console.log('Successfuly connected!')
     // Sets name;
     //  THIS ASKS FOR USER INPUT ON CMD LINE
-    process.stdin.on('data', (data) => {
-      conn.write(`Name: ${data}`)
-    }); 
+    process.stdout.write('Your Name: ')
+    const getName = (data) => {
+      conn.write(`Name: ${data}`);
+      process.stdin.removeListener('data', getName);
+      //close stdin
+      cb();
+    }
+    process.stdin.on('data', getName); 
   // MOVES UP ONCE UPON CONNECTION 
     // move up on connection
     // conn.write('Move: up');
@@ -28,6 +34,8 @@ const connect = function() {
     // conn.write('Move: left');
 
   });
+
+
 
  
   conn.on('data', (data) => {
