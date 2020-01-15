@@ -10,11 +10,26 @@ const connect = function() {
   conn.setEncoding('utf8'); 
 
   conn.on('connect', () => {
-    console.log('success')
-    conn.write(`Name: MCC`);
+    console.log('Successfuly connected!')
+    // Sets name;
+    //  THIS ASKS FOR USER INPUT ON CMD LINE
+    process.stdin.on('data', (data) => {
+      conn.write(`Name: ${data}`)
+    }); 
+  // MOVES UP ONCE UPON CONNECTION 
+    // move up on connection
+    // conn.write('Move: up');
+
+  // MOVES LEFT CONTINUOSLY UPON CONNECTION
+    // setInterval(() => {
+    //   conn.write('Move: left');
+    // }, 100)
+    
+    // conn.write('Move: left');
+
   });
 
-
+ 
   conn.on('data', (data) => {
     console.log(data)
   });
