@@ -29,6 +29,9 @@ const handleUserInput = function (stdin) {
     }
     if (key === "d") {
       connection.write('Move: right')
+    } 
+    if (key === "m") {
+      connection.write('Say: What\'s up Friendo\'s')
     }
   });
 };

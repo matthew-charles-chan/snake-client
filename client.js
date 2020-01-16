@@ -15,25 +15,24 @@ const connect = function(cb) {
     // Sets name;
     //  THIS ASKS FOR USER INPUT ON CMD LINE
     process.stdout.write('Your Name: ');
+    
+    // defines getName function
     const getName = (data) => {
       conn.write(`Name: ${data}`);
+
+      // once name entered (user presses 'enter'),  getName listener removed
       process.stdin.removeListener('data', getName);
-      //close stdin
+      
+      
+      // callback function to run 'setupInput' function, takes 'conn' as a parameter
       cb(conn);
     };
+
+    // calls getName function
     process.stdin.on('data', getName);
-    // MOVES UP ONCE UPON CONNECTION
-    // move up on connection
-    // conn.write('Move: up');
-
-    // MOVES LEFT CONTINUOSLY UPON CONNECTION
-    // setInterval(() => {
-    //   conn.write('Move: left');
-    // }, 100)
-    
-    // conn.write('Move: left');
-
   });
+
+  // if server sends data, console.log that data
   conn.on('data', (data) => {
     console.log(data);
   });
