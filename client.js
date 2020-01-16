@@ -19,7 +19,7 @@ const connect = function(cb) {
       conn.write(`Name: ${data}`);
       process.stdin.removeListener('data', getName);
       //close stdin
-      cb();
+      cb(conn);
     };
     process.stdin.on('data', getName);
     // MOVES UP ONCE UPON CONNECTION
