@@ -1,12 +1,16 @@
 const net = require('net');
 
+const { IP, PORT } = require('./constants')
+
 process.stdin.resume();
 
 
 const connect = function(cb) {
+
+  // asigns client connection to 'conn'
   const conn = net.createConnection({
-    host: '192.168.88.45',
-    port: 50541
+    host: IP,
+    port: PORT
   });
   conn.setEncoding('utf8');
 

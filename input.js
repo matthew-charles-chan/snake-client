@@ -31,7 +31,7 @@ const handleUserInput = function (stdin) {
       connection.write('Move: right')
     } 
     if (key === "m") {
-      connection.write('Say: What\'s up Friendo\'s')
+      connection.write('Say: What\'s up friendos')
     }
   });
 };
